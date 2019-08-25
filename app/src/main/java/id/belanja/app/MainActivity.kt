@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.widget.Toast
 import id.belanja.app.adapter.ListProductAdapter
 import id.belanja.app.model.Products
 import id.belanja.app.model.ProductsData
@@ -46,7 +45,13 @@ class MainActivity : AppCompatActivity() {
     private fun setListClickAction() {
         listProductAdapter.setOnItemClickCallback(object : ListProductAdapter.OnItemClickCallback {
             override fun onItemClick(data: Products) {
-                Toast.makeText(this@MainActivity, "Anda memilih ${data.name}", Toast.LENGTH_SHORT).show()
+                val manageDetailIntent = Intent(this@MainActivity, DetailProductActivity::class.java)
+                    .apply {
+                        putExtra(DetailProductActivity.EXTRA_NAME, data.name)
+                        putExtra(DetailProductActivity.EXTRA_PRICE, data.price.toString())
+                        putExtra(DetailProductActivity.EXTRA_IMAGE_URL, data.image)
+                    }
+                startActivity(manageDetailIntent)
             }
         })
     }
