@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_toEndOf="@id/imgProduct"
-            android:text="Nama Product"
+            android:text="@string/nama_product"
             android:textColor="@android:color/holo_blue_light" />
 
         <TextView
@@ -37,7 +37,7 @@
             android:layout_marginStart="8dp"
             android:layout_toEndOf="@id/imgProduct"
             android:maxLines="1"
-            android:text="Harga Product"
+            android:text="@string/harga_product"
             android:textColor="@android:color/black" />
 
     </RelativeLayout>
