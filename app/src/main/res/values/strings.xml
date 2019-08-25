@@ -2,4 +2,5 @@
     <string name="app_name">Belanja App</string>
     <string name="nama_product">Nama Product</string>
     <string name="harga_product">Harga Product</string>
+    <string name="gambar_product">Gambar Product</string>
 </resources>
