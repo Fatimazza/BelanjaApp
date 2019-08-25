@@ -3,4 +3,5 @@
     <string name="nama_product">Nama Product</string>
     <string name="harga_product">Harga Product</string>
     <string name="gambar_product">Gambar Product</string>
+    <string name="tambah_product">Tambah Product</string>
 </resources>
