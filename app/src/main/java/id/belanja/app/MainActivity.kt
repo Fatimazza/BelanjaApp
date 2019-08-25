@@ -1,5 +1,6 @@
 package id.belanja.app
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         showListProducts()
+        setupAddProduct()
     }
 
     private fun showListProducts() {
@@ -25,6 +27,13 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = ListProductAdapter(list)
             setHasFixedSize(true)
+        }
+    }
+
+    private fun setupAddProduct() {
+        btnAddProduct.setOnClickListener {
+            val detailIntent = Intent(this, DetailProductActivity::class.java)
+            startActivity(detailIntent)
         }
     }
 }
