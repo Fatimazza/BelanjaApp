@@ -12,6 +12,12 @@ import kotlinx.android.synthetic.main.item_list_product.view.*
 class ListProductAdapter(val listProduct: ArrayList<Products>) :
     RecyclerView.Adapter<ListProductAdapter.ListProductViewHolder>() {
 
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ListProductAdapter.ListProductViewHolder {
         val view: View = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.item_list_product, viewGroup, false)
@@ -22,6 +28,9 @@ class ListProductAdapter(val listProduct: ArrayList<Products>) :
 
     override fun onBindViewHolder(holder: ListProductAdapter.ListProductViewHolder, position: Int) {
         holder.bind(listProduct[position])
+        holder.itemView.setOnClickListener() {
+            onItemClickCallback.onItemClick(listProduct[holder.adapterPosition])
+        }
     }
 
     class ListProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -32,5 +41,9 @@ class ListProductAdapter(val listProduct: ArrayList<Products>) :
                 Glide.with(this).load(products.image).into(imgProduct)
             }
         }
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClick(data: Products)
     }
 }
