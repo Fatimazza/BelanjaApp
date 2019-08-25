@@ -1,24 +1,34 @@
 package id.belanja.app.adapter
 
 import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import id.belanja.app.R
+import id.belanja.app.model.Products
+import kotlinx.android.synthetic.main.item_list_product.view.*
 
-class ListProductAdapter : RecyclerView.Adapter<ListProductAdapter.ListProductViewHolder>() {
+class ListProductAdapter(val listProduct: ArrayList<Products>) :
+    RecyclerView.Adapter<ListProductAdapter.ListProductViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ListProductAdapter.ListProductViewHolder {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val view: View = LayoutInflater.from(viewGroup.context)
+            .inflate(R.layout.item_list_product, viewGroup, false)
+        return ListProductViewHolder(view)
     }
 
-    override fun getItemCount(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getItemCount(): Int = listProduct.size
 
     override fun onBindViewHolder(holder: ListProductAdapter.ListProductViewHolder, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        holder.bind(listProduct[position])
     }
 
-    inner class ListProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
+    class ListProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind(products: Products) {
+            with(itemView) {
+                tvProductName.text = products.name
+                tvProductPrice.text = products.price.toString()
+            }
+        }
     }
 }
