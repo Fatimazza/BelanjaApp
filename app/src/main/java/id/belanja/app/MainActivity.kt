@@ -5,13 +5,12 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import id.belanja.app.adapter.ListProductAdapter
-import id.belanja.app.model.Products
-import id.belanja.app.model.ProductsData
+import id.belanja.app.data.model.Product
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private var list: ArrayList<Products> = arrayListOf()
+    private var list: ArrayList<Product> = arrayListOf()
 
     private lateinit var listProductAdapter: ListProductAdapter
 
@@ -21,18 +20,25 @@ class MainActivity : AppCompatActivity() {
 
         showListProducts()
         setupAddProduct()
-        setListClickAction()
     }
 
     private fun showListProducts() {
-        list.addAll(ProductsData.listProduct)
-        listProductAdapter = ListProductAdapter(list)
+        App.instance.repository.getProducts({
+            list.addAll(it)
 
-        rvProducts.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity)
-            adapter = listProductAdapter
-            setHasFixedSize(true)
-        }
+            listProductAdapter = ListProductAdapter(list)
+
+            rvProducts.apply {
+                layoutManager = LinearLayoutManager(this@MainActivity)
+                adapter = listProductAdapter
+                setHasFixedSize(true)
+            }
+
+            setListClickAction()
+
+        }, {
+            it.printStackTrace()
+        })
     }
 
     private fun setupAddProduct() {
@@ -44,13 +50,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun setListClickAction() {
         listProductAdapter.setOnItemClickCallback(object : ListProductAdapter.OnItemClickCallback {
-            override fun onItemClick(data: Products) {
-                val manageDetailIntent = Intent(this@MainActivity, DetailProductActivity::class.java)
-                    .apply {
-                        putExtra(DetailProductActivity.EXTRA_NAME, data.name)
-                        putExtra(DetailProductActivity.EXTRA_PRICE, data.price.toString())
-                        putExtra(DetailProductActivity.EXTRA_IMAGE_URL, data.image)
-                    }
+            override fun onItemClick(data: Product) {
+                val manageDetailIntent =
+                    Intent(this@MainActivity, DetailProductActivity::class.java)
+                        .apply {
+                            putExtra(DetailProductActivity.EXTRA_NAME, data.name)
+                            putExtra(DetailProductActivity.EXTRA_PRICE, data.price.toString())
+                            putExtra(DetailProductActivity.EXTRA_IMAGE_URL, data.image)
+                        }
                 startActivity(manageDetailIntent)
             }
         })

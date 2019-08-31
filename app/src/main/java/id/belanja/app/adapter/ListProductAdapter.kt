@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import id.belanja.app.R
-import id.belanja.app.model.Products
+import id.belanja.app.data.model.Product
 import kotlinx.android.synthetic.main.item_list_product.view.*
 
-class ListProductAdapter(val listProduct: ArrayList<Products>) :
+class ListProductAdapter(val listProduct: ArrayList<Product>) :
     RecyclerView.Adapter<ListProductAdapter.ListProductViewHolder>() {
 
     private lateinit var onItemClickCallback: OnItemClickCallback
@@ -34,16 +34,16 @@ class ListProductAdapter(val listProduct: ArrayList<Products>) :
     }
 
     class ListProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(products: Products) {
+        fun bind(product: Product) {
             with(itemView) {
-                tvProductName.text = products.name
-                tvProductPrice.text = products.price.toString()
-                Glide.with(this).load(products.image).into(imgProduct)
+                tvProductName.text = product.name
+                tvProductPrice.text = product.price.toString()
+                Glide.with(this).load(product.image).into(imgProduct)
             }
         }
     }
 
     interface OnItemClickCallback {
-        fun onItemClick(data: Products)
+        fun onItemClick(data: Product)
     }
 }
