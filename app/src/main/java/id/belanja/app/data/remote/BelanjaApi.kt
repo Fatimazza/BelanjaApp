@@ -1,11 +1,14 @@
 package id.belanja.app.data.remote
 
+import com.google.gson.JsonObject
 import id.belanja.app.BuildConfig
-import id.belanja.app.data.remote.response.GetProductsResponse
+import id.belanja.app.data.model.Product
+import id.belanja.app.data.remote.response.ProductResponse
+import id.belanja.app.data.remote.response.ProductsResponse
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
+import retrofit2.http.*
 
 /**
  * @author Yuana andhikayuana@gmail.com
@@ -23,6 +26,15 @@ object BelanjaApi {
 
     interface Api {
         @GET("/products")
-        fun getProducts(): Call<GetProductsResponse>
+        fun getProducts(): Call<ProductsResponse>
+
+        @POST("/products")
+        fun saveProduct(@Body product: Product): Call<ProductResponse>
+
+        @DELETE("/products/{id}")
+        fun deleteProduct(@Path("id") id: Int): Call<JsonObject>
+
+        @PUT("/products/{id}")
+        fun updateProuct(@Path("id") id: Int, @Body product: Product): Call<ProductResponse>
     }
 }

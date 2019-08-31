@@ -3,7 +3,7 @@ package id.belanja.app.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class GetProductsResponse(
+data class ProductsResponse(
     @SerializedName("data")
     val `data`: List<Data>,
     @SerializedName("code")
