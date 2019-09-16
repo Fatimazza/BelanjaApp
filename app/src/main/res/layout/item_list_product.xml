@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardBackgroundColor="#dddddd"
+    app:cardBackgroundColor="@android:color/white"
     app:cardCornerRadius="8dp"
     app:cardElevation="10dp">
 
@@ -27,7 +27,7 @@
             android:layout_marginStart="8dp"
             android:layout_toEndOf="@id/imgProduct"
             android:text="@string/nama_product"
-            android:textColor="@android:color/holo_blue_light" />
+            android:textColor="@color/colorPrimary" />
 
         <TextView
             android:id="@+id/tvProductPrice"
