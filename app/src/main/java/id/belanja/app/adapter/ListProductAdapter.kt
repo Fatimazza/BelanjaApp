@@ -1,6 +1,6 @@
 package id.belanja.app.adapter
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +10,7 @@ import id.belanja.app.data.model.Product
 import kotlinx.android.synthetic.main.item_list_product.view.*
 
 class ListProductAdapter(val listProduct: ArrayList<Product>) :
-    RecyclerView.Adapter<ListProductAdapter.ListProductViewHolder>() {
+    androidx.recyclerview.widget.RecyclerView.Adapter<ListProductAdapter.ListProductViewHolder>() {
 
     private lateinit var onItemClickCallback: OnItemClickCallback
 
@@ -33,7 +33,7 @@ class ListProductAdapter(val listProduct: ArrayList<Product>) :
         }
     }
 
-    class ListProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ListProductViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
         fun bind(product: Product) {
             with(itemView) {
                 tvProductName.text = product.name

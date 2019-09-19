@@ -2,8 +2,8 @@ package id.belanja.app
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import id.belanja.app.adapter.ListProductAdapter
 import id.belanja.app.data.model.Product
 import id.belanja.app.ext.toast
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             listProductAdapter = ListProductAdapter(list)
 
             rvProducts.apply {
-                layoutManager = LinearLayoutManager(this@MainActivity)
+                layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this@MainActivity)
                 adapter = listProductAdapter
                 setHasFixedSize(true)
             }
