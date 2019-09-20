@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             listProductAdapter = ListProductAdapter(list)
 
             rvProducts.apply {
-                layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this@MainActivity)
+                layoutManager = LinearLayoutManager(this@MainActivity)
                 adapter = listProductAdapter
                 setHasFixedSize(true)
             }

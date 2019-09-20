@@ -10,7 +10,7 @@ import id.belanja.app.data.model.Product
 import kotlinx.android.synthetic.main.item_list_product.view.*
 
 class ListProductAdapter(val listProduct: ArrayList<Product>) :
-    androidx.recyclerview.widget.RecyclerView.Adapter<ListProductAdapter.ListProductViewHolder>() {
+    RecyclerView.Adapter<ListProductAdapter.ListProductViewHolder>() {
 
     private lateinit var onItemClickCallback: OnItemClickCallback
 
@@ -18,7 +18,7 @@ class ListProductAdapter(val listProduct: ArrayList<Product>) :
         this.onItemClickCallback = onItemClickCallback
     }
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ListProductAdapter.ListProductViewHolder {
+    override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ListProductViewHolder {
         val view: View = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.item_list_product, viewGroup, false)
         return ListProductViewHolder(view)
@@ -26,14 +26,14 @@ class ListProductAdapter(val listProduct: ArrayList<Product>) :
 
     override fun getItemCount(): Int = listProduct.size
 
-    override fun onBindViewHolder(holder: ListProductAdapter.ListProductViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ListProductViewHolder, position: Int) {
         holder.bind(listProduct[position])
         holder.itemView.setOnClickListener() {
             onItemClickCallback.onItemClick(listProduct[holder.adapterPosition])
         }
     }
 
-    class ListProductViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
+    class ListProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(product: Product) {
             with(itemView) {
                 tvProductName.text = product.name
